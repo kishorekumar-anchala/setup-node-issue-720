@@ -1,18 +1,31 @@
-name: Failing Workflow
-on:   # yamllint disable-line rule:truthy
-  push: {}
-  workflow_dispatch: {}
+name: Node.js CI
+
+on:
+  push:
+
 jobs:
-  test:
-    name: Checkout and Setup
-    timeout-minutes: 5
+  build:
     runs-on: windows-latest
+
     steps:
-    - uses: actions/checkout@v4
+    # Step 1: Checkout the code from the repository
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Step 2: Set up Node.js using the specified version
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18' 
-    - name: Run Node.js script
-      run: node ./node.js
-        
+        node-version: '16'  # Change this to your desired Node.js version
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Run tests
+    - name: Run tests
+      run: npm test  # Replace with your test command
+
+    # Optional Step: Linting (if you use eslint or any linting tool)
+    - name: Run linting
+      run: npm run lint  # Replace with your linting command
