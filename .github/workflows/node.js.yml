@@ -1,5 +1,5 @@
 name: Failing Workflow
-on:   # yamllint disable-line rule:truthy
+on:
   push: {}
   workflow_dispatch: {}
 jobs:
@@ -9,10 +9,18 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '18.20.6' 
+        node-version: '18.20.6'
+
     - name: Run Node.js script
-      run: node ./node.js
-        
+      run: |
+        node ./node.js
+      shell: pwsh
+
+    - name: Error Handling
+      if: failure()
+      run: echo "An error occurred during the workflow execution."
+      shell: pwsh
