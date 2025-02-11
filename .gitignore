@@ -1,0 +1,30 @@
+# Node modules directory
+node_modules/
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+
+# Build output
+/dist
+/build
+
+# Dependency directories
+/.npm
+/.cache
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Other files you might not want to commit
+*.log
+*.swp
